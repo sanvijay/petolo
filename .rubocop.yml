@@ -1,0 +1,136 @@
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  TargetRubyVersion: 2.7
+  DisplayStyleGuide: true
+  DisplayCopNames: true
+  ExtraDetails: true
+  Exclude:
+    - "db/schema.rb"
+    - "db/migrate/**.rb"
+    - "bin/**"
+    - "db/**/*"
+    - "tmp/**/*"
+    - "vendor/**/*"
+    - "bin/**/*"
+    - "log/**/*"
+
+#
+# Bundler
+#
+
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
+Bundler/GemComment:
+  Enabled: true
+
+#
+# Layout
+#
+# This causes lots of issues with the annotate gem
+Layout/EmptyLineAfterMagicComment:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 100
+  Exclude:
+    - "lib/tasks/**"
+    - "spec/factories/**"
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+#
+# Lint
+#
+# Note: This linter rule blocks valid RSpec syntax
+# https://www.rubydoc.info/gems/rubocop/RuboCop/Cop/Lint/AmbiguousBlockAssociation
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - "spec/**/*"
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
+
+#
+# Metrics
+#
+
+Metrics/BlockLength:
+  Max: 35
+  Exclude:
+    - "spec/**/*"
+    - "lib/tasks/**"
+    - "lib/tasks/one_time_jobs/**"
+
+Metrics/MethodLength:
+  Max: 12
+  Exclude:
+    - "spec/**/*"
+#
+# Performance
+#
+
+Performance/ChainArrayAllocation:
+  Enabled: true
+
+Performance/OpenStruct:
+  Enabled: true
+
+#
+# Style
+#
+
+Style/AutoResourceCleanup:
+  Enabled: true
+
+Style/CollectionMethods:
+  Enabled: true
+
+# Currently prohibits comment annotations that on a separate line;
+# which are nice when we have mutli-line long TODO, NOTES, etc.
+Style/CommentAnnotation:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/NumericLiterals:
+  MinDigits: 11
+
+Style/ReturnNil:
+  EnforcedStyle: return
+
+Style/SingleLineBlockParams:
+  Enabled: true
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Style/ExponentialNotation:
+  Enabled: true
+
+Style/GlobalVars:
+  Enabled: false

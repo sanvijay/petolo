@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
+
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "2.7.1"
@@ -37,7 +40,7 @@ gem "redis", "~> 4.0"
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
@@ -50,7 +53,31 @@ gem "bootsnap", require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "debug", platforms: %i[mri mingw x64_mingw]
+
+  # Drop-in alternative to its default testing framework, Minitest.
+  gem "rspec-rails"
+
+  # Static code analyzer
+  gem "rubocop", require: false
+
+  # A RuboCop extension focused on enforcing Rails best practices and coding conventions.
+  gem "rubocop-rails", require: false
+
+  # Performance plugin for rubocop, separated into separate gem in 0.67.0
+  gem "rubocop-performance"
+
+  # RSpec-specific analysis for your projects, as an extension to RuboCop.
+  gem "rubocop-rspec", require: false
+
+  # Brakeman is a static analysis tool which checks Ruby on Rails applications for security vulnerabilities.
+  gem "brakeman"
+
+  # Patch-level verification for bundler.
+  gem "bundler-audit"
+
+  # SimpleCov is a code coverage analysis tool for Ruby
+  gem "simplecov", require: false
 end
 
 group :development do
@@ -67,6 +94,10 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
+
+  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "selenium-webdriver"
+
+  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "webdrivers"
 end
