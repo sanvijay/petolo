@@ -14,5 +14,7 @@ class CreateEvents < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+
+    add_index :events, [:slug, :start_date], unique: true
   end
 end

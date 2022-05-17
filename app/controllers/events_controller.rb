@@ -6,6 +6,12 @@ class EventsController < ApplicationController
   # GET /events or /events.json
   def index
     @events = Event.all
+
+    @events = @events.where(start_date: params[:date]) if params[:date].present?
+    @events = @events.where("LOWER(title) like ?", "%#{params[:title].downcase}%") if params[:title].present?
+    @events = @events.where(source: params[:source]) if params[:source].present?
+
+    @sources = Event.select(:source).distinct.pluck(:source)
   end
 
   # GET /events/1 or /events/1.json
@@ -14,6 +20,8 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+
+    @event.source = "local"
   end
 
   # GET /events/1/edit
@@ -67,7 +75,7 @@ class EventsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def event_params
     params.require(:event).permit(
-      :slug, :title, :description, :start_time, :end_time, :location, :event_link, :source
+      :title, :description, :start_date, :end_date, :location, :event_link, :source
     )
   end
 end

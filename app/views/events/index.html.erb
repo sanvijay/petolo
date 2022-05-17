@@ -2,12 +2,20 @@
 
 <h1>Events</h1>
 
-<div id="events">
+<div class="filter-container">
+  <form>
+    <div class="events-input-container">
+      <%= select_tag "source", options_for_select([''] + @sources.collect{ |source| [source, source] }) %>
+      <input type="text" name="title" />
+      <input type="date" name="date" />
+    </div>
+    <input type="submit" name="submit">
+  </form>
+</div>
+
+<div id="events" class="events">
   <% @events.each do |event| %>
     <%= render event %>
-    <p>
-      <%= link_to "Show this event", event %>
-    </p>
   <% end %>
 </div>
 

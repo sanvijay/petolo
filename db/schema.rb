@@ -27,6 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_16_153000) do
     t.string "source"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["slug", "start_date"], name: "index_events_on_slug_and_start_date", unique: true
   end
 
 end

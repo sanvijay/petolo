@@ -1,4 +1,4 @@
-<div id="<%= dom_id event %>">
+<div id="<%= dom_id event %>" class="event">
   <p>
     <strong>Slug:</strong>
     <%= event.slug %>
@@ -15,13 +15,13 @@
   </p>
 
   <p>
-    <strong>Start time:</strong>
-    <%= event.start_time %>
+    <strong>Start date:</strong>
+    <%= event.start_date %>
   </p>
 
   <p>
-    <strong>End time:</strong>
-    <%= event.end_time %>
+    <strong>End date:</strong>
+    <%= event.end_date %>
   </p>
 
   <p>
@@ -39,4 +39,5 @@
     <%= event.source %>
   </p>
 
+  <%= link_to "Show this event", event %>
 </div>
