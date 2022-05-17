@@ -1,0 +1,10 @@
+load_co_berlin:
+  cron: "0 14 * * *"
+  class: Scheduled::LoadCoBerlinJob
+  queue: low
+  description: "Recurring daily job to load co berlin"
+outcome_surveys:
+  cron: "0 14 * * *"
+  class: Scheduled::LoadVisitBerlinJob
+  queue: low
+  description: "Recurring daily job to load visit berlin data"
